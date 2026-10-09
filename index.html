@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5f1">
+  <title>Shiftwell — Hotel Roster Planner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Shiftwell home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>shiftwell</span>
+      </a>
+      <div class="property-switcher">
+        <div class="property-avatar">H</div>
+        <div class="property-copy"><strong>The Harbor House</strong><span>Hotel operations</span></div>
+        <span class="chevron">⌄</span>
+      </div>
+      <p class="nav-label">WORKSPACE</p>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="nav-item" href="#overview"><span class="nav-icon">◫</span>Overview</a>
+        <a class="nav-item active" href="#schedule"><span class="nav-icon">▦</span>Schedule</a>
+        <a class="nav-item" href="#team"><span class="nav-icon">♧</span>Team</a>
+        <a class="nav-item" href="#notifications"><span class="nav-icon">♧</span>Notifications<span class="nav-count">2</span></a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card"><div class="help-spark">✳</div><strong>Need a hand?</strong><p>Learn how Shiftwell builds a balanced roster.</p><a href="#how-it-works">Explore the guide <span>↗</span></a></div>
+        <div class="profile-row"><div class="profile-avatar">JM</div><div class="profile-copy"><strong>Jordan Miller</strong><span>Department head</span></div><button class="more-button" aria-label="More profile options">···</button></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="breadcrumb">Workspace <span>/</span> <strong>Schedule</strong></div>
+        <div class="top-actions"><button class="icon-button" aria-label="Search">⌕</button><button class="icon-button notification-bell" aria-label="Notifications">♧<i></i></button><div class="top-avatar">JM</div></div>
+      </header>
+
+      <div class="page-wrap">
+        <section class="page-heading" id="overview">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-dot"></span>WEEKLY PLANNING</div>
+            <h1>Good morning, Jordan <span class="wave">✳</span></h1>
+            <p class="subheading">Build a roster that works for your team and your guests.</p>
+          </div>
+          <div class="heading-actions"><button class="button button-light" id="addStaffButton"><span class="plus">＋</span> Add team member</button><button class="button button-primary" id="generateButton"><span class="sparkle">✳</span> Generate roster</button></div>
+        </section>
+
+        <section class="week-toolbar" id="schedule">
+          <div class="week-date"><button class="date-arrow" id="previousWeek" aria-label="Previous week">‹</button><div><strong id="weekLabel">October 12–18, 2026</strong><span>Week 42 <b>·</b> 7 days</span></div><button class="date-arrow" id="nextWeek" aria-label="Next week">›</button></div>
+          <div class="toolbar-right"><span class="last-saved"><span class="saved-dot"></span> Roster not generated</span><button class="button button-outline" id="notifyButton"><span>♧</span> Notify team</button><button class="icon-button more-button" aria-label="More schedule options">···</button></div>
+        </section>
+
+        <section class="metrics-grid" aria-label="Roster summary">
+          <article class="metric-card"><div class="metric-top"><span>SHIFT COVERAGE</span><span class="metric-icon mint">▦</span></div><div class="metric-number"><strong id="coverageValue">—</strong><span class="metric-trend positive" id="coverageDetail">Generate a roster</span></div><div class="metric-track"><span id="coverageBar"></span></div></article>
+          <article class="metric-card"><div class="metric-top"><span>UNDERSTAFFED SHIFTS</span><span class="metric-icon peach">⌁</span></div><div class="metric-number"><strong id="understaffedValue">—</strong><span class="metric-trend neutral" id="understaffedDetail">Across the week</span></div><div class="metric-note"><span class="mini-dot peach-dot"></span> Shifts missing a required role</div></article>
+          <article class="metric-card"><div class="metric-top"><span>PLANNED HOURS</span><span class="metric-icon lilac">◷</span></div><div class="metric-number"><strong id="hoursValue">—</strong><span class="metric-trend neutral">of <b id="teamHourCapacity">—</b> team hours</span></div><div class="metric-note"><span class="mini-dot lilac-dot"></span> Overtime <b id="overtimeValue">0h</b></div></article>
+          <article class="metric-card"><div class="metric-top"><span>TEAM FAIRNESS</span><span class="metric-icon butter">✳</span></div><div class="metric-number"><strong id="fairnessValue">—</strong><span class="metric-trend positive">Shift balance</span></div><div class="metric-note"><span class="mini-dot green-dot"></span> Days off respected</div></article>
+        </section>
+
+        <section class="content-grid">
+          <div class="schedule-panel panel">
+            <div class="panel-heading"><div><h2>Weekly roster</h2><p>Occupancy-aware schedule across all departments</p></div><div class="view-switch"><button class="view-option active">Week</button><button class="view-option" id="listViewButton">List</button></div></div>
+            <div class="department-legend"><span><i class="legend-dot front"></i>Front desk</span><span><i class="legend-dot rooms"></i>Housekeeping</span><span><i class="legend-dot dining"></i>Food &amp; beverage</span><span><i class="legend-dot facilities"></i>Facilities</span><span><i class="legend-dot security"></i>Security</span></div>
+            <div class="schedule-grid" id="scheduleGrid" aria-live="polite"><div class="empty-state"><div class="empty-illustration">▦</div><strong>Your next week, at a glance</strong><p>Generate a roster to see shift assignments matched to occupancy and availability.</p><button class="button button-primary" id="emptyGenerateButton">Generate first roster</button></div></div>
+            <div class="panel-footer"><span><i class="legend-dot unfilled"></i> Unfilled position</span><span class="rest-note"><span>✓</span> Rest and availability rules checked</span></div>
+          </div>
+
+          <aside class="right-column">
+            <section class="panel occupancy-panel">
+              <div class="panel-heading compact"><div><h2>Occupancy forecast</h2><p>Adjust expected room occupancy</p></div><button class="text-button" id="resetOccupancy">Reset</button></div>
+              <div class="occupancy-list" id="occupancyList"></div>
+              <div class="occupancy-foot"><span class="forecast-icon">✳</span><span>Higher occupancy adds room and dining coverage.</span></div>
+            </section>
+            <section class="panel notification-panel" id="notifications">
+              <div class="panel-heading compact"><div><h2>Staff updates</h2><p>Preview what your team will receive</p></div><span class="live-badge"><i></i> READY</span></div>
+              <div class="notification-tabs"><button class="notify-tab active" data-mode="weekly">Weekly</button><button class="notify-tab" data-mode="daily">Daily</button><select id="notificationDay" aria-label="Choose day for daily update"></select></div>
+              <div class="message-preview"><div class="message-header"><div class="message-avatar">SW</div><div><strong>Shiftwell team update</strong><span id="messageDate">For Oct 12–18</span></div><span class="message-time">now</span></div><div class="message-body" id="messageBody">Generate a roster to preview the team update.</div></div>
+              <button class="button button-outline button-full" id="copyMessageButton"><span>▣</span> Copy message preview</button>
+              <p class="notification-footnote">Preview only — no messages are sent from this demo.</p>
+            </section>
+          </aside>
+        </section>
+
+        <section class="staff-panel panel" id="team">
+          <div class="panel-heading"><div><h2>Your team <span class="team-total" id="teamCount">0</span></h2><p>Roles, skills, and weekly availability</p></div><button class="text-button" id="viewTeamButton">Manage team <span>↗</span></button></div>
+          <div class="team-table-wrap"><table class="team-table"><thead><tr><th>TEAM MEMBER</th><th>ROLE / SKILLS</th><th>AVAILABLE</th><th>WEEKLY LIMIT</th><th>WEEKLY OFF</th></tr></thead><tbody id="teamTableBody"></tbody></table></div>
+        </section>
+        <footer class="page-footer"><span>Shiftwell <span class="footer-sep">·</span> W2 hotel scheduling concept</span><a href="#how-it-works" id="how-it-works">How roster generation works <span>↗</span></a></footer>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="staffDialog" class="staff-dialog">
+    <form method="dialog" id="staffForm">
+      <div class="dialog-heading"><div><div class="eyebrow">TEAM SETUP</div><h2>Add a team member</h2></div><button class="dialog-close" value="cancel" aria-label="Close">×</button></div>
+      <label class="form-field">Name<input name="name" required maxlength="40" placeholder="e.g. Alex Morgan"></label>
+      <label class="form-field">Primary role<select name="role" required></select></label>
+      <div class="form-row"><label class="form-field">Weekly hours limit<select name="maxHours"><option>32</option><option selected>40</option><option>48</option></select></label><label class="form-field">Weekly day off<select name="dayOff"></select></label></div>
+      <label class="form-field">Skills <span class="field-hint">Choose any additional roles they can cover.</span></label>
+      <div class="skill-options" id="skillOptions"></div>
+      <div class="dialog-actions"><button class="button button-light" value="cancel">Cancel</button><button class="button button-primary" id="saveStaffButton" value="default">Add team member</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
